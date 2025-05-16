@@ -1,0 +1,24 @@
+services:
+  dify-upload-workflow:
+    image: dify-upload-workflow:latest
+    container_name: dify-upload-workflow
+    ports:
+      - "3010:3010"
+    restart: always
+    environment:
+      - PORT=3010
+      - MAX_UPLOAD_FILES=10
+      - DEFAULT_USER=dify-user
+      - API_TIMEOUT=120
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
+    networks:
+      - proxy_net
+
+networks:
+  proxy_net:
+    external: true
+    name: api-proxy_proxy_net 

@@ -1,0 +1,90 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 日志
+logs/
+*.log
+
+# 本地配置
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Go特有忽略项
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+/vendor/
+/Godeps/
+
+# 编译生成的二进制文件
+dify-upload-workflow
+main
+
+# 配置和数据文件
+/config/access_token.json
+*.db
+*.sqlite
+
+# Docker 相关
+.docker/
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.yml
+!docker-compose-database-api-go.yml
+
+# 临时文件
+tmp/
+temp/
+.tmp/
+.temp/
+
+# 覆盖率报告
+coverage.txt
+coverage.html
+
+*.tar
+
+.cursor/
