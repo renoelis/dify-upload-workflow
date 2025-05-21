@@ -10,6 +10,7 @@ services:
       - MAX_UPLOAD_FILES=10
       - DEFAULT_USER=dify-user
       - API_TIMEOUT=120
+      - GO_ENV=production
     logging:
       driver: "json-file"
       options:

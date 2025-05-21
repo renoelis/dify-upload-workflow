@@ -4,9 +4,18 @@ import (
 	"dify-upload-workflow/config"
 	"dify-upload-workflow/router"
 	"log"
+	"os"
 )
 
 func main() {
+	// 检查环境变量
+	env := os.Getenv("GO_ENV")
+	if env == "" {
+		log.Println("未设置GO_ENV环境变量，默认使用开发环境")
+	} else {
+		log.Printf("当前运行环境: %s", env)
+	}
+
 	// 初始化配置
 	config.InitConfig()
 
@@ -21,4 +30,4 @@ func main() {
 	if err := r.Run(":" + port); err != nil {
 		log.Fatalf("服务启动失败: %v", err)
 	}
-} 
+}

@@ -12,6 +12,7 @@ type ServerConfig struct {
 	MaxFileSize       int64
 	DefaultUser       string
 	DefaultApiTimeout int
+	Environment       string
 }
 
 // Config 应用配置
@@ -21,6 +22,7 @@ var Config = &ServerConfig{
 	MaxFileSize:       100 * 1024 * 1024, // 默认最大100MB，实际由Dify接口限制
 	DefaultUser:       "user",
 	DefaultApiTimeout: 120, // 默认API超时时间（秒）
+	Environment:       "development",
 }
 
 // GetPort 获取服务端口
@@ -31,8 +33,21 @@ func GetPort() string {
 	return Config.Port
 }
 
+// GetEnvironment 获取当前环境
+func GetEnvironment() string {
+	if env := os.Getenv("GO_ENV"); env != "" {
+		return env
+	}
+	return Config.Environment
+}
+
 // InitConfig 初始化配置
 func InitConfig() {
+	// 设置环境
+	if env := os.Getenv("GO_ENV"); env != "" {
+		Config.Environment = env
+	}
+
 	if maxFiles := os.Getenv("MAX_UPLOAD_FILES"); maxFiles != "" {
 		if val, err := strconv.Atoi(maxFiles); err == nil && val > 0 {
 			Config.MaxUploadFiles = val
@@ -48,4 +63,4 @@ func InitConfig() {
 			Config.DefaultApiTimeout = val
 		}
 	}
-} 
+}

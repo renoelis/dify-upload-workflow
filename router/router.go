@@ -5,6 +5,7 @@ import (
 	"dify-upload-workflow/controller"
 	"log"
 	"net/http"
+	"os"
 	"runtime"
 	"time"
 
@@ -13,6 +14,14 @@ import (
 
 // SetupRouter 设置路由
 func SetupRouter() *gin.Engine {
+	// 根据环境变量设置Gin模式
+	if os.Getenv("GO_ENV") == "production" {
+		gin.SetMode(gin.ReleaseMode)
+		log.Println("Gin正在以生产模式运行")
+	} else {
+		log.Println("Gin正在以开发模式运行")
+	}
+
 	r := gin.Default()
 
 	// 跨域中间件
